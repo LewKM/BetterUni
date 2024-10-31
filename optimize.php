@@ -3,68 +3,72 @@ $dbhost = 'localhost';
 $dbuser = 'root';
 $dbpass = '';
 $dbname = 'betteruni';
-$konek = new mysqli($dbhost,$dbuser,$dbpass,$dbname);
+$konek = new mysqli($dbhost, $dbuser, $dbpass, $dbname);
 if ($konek->connect_error) {
-   die('Connect Error ('.$konek->connect_errno.')'.$konek->connect_error);
+    die('Connect Error ('.$konek->connect_errno.')'.$konek->connect_error);
 }
-
 
 $sql = 'SELECT * FROM moo_kriteria';
 $result = $konek->query($sql);
-$kriteria=array();
+$kriteria = array();
 
 foreach ($result as $row) {
-   $kriteria[$row['id_criteria']]=array($row['kriteria'],$row['type'],$row['bobot']);
+    $kriteria[$row['id_criteria']] = array($row['kriteria'], $row['type'], $row['bobot']);
 }
-
 
 $sql = 'SELECT * FROM courses';
 $result = $konek->query($sql);
-$alternatif=array();
+$alternatif = array();
 
 foreach ($result as $row) {
-   $alternatif[$row['id_alternative']] = array(
-     $row['coursename'],
-     $row['coursecode'],
-     $row['institution'],
-     $row['cutoffpoints'],
-     $row['clustergroup']
-   );
+    $alternatif[$row['id_alternative']] = array(
+        $row['coursename'],
+        $row['coursecode'],
+        $row['institution'],
+        $row['cutoffpoints'],
+        $row['clustergroup']
+    );
 }
 
 $sql = 'SELECT * FROM weights ORDER BY id_alternative, id_criteria';
 $result = $konek->query($sql);
-$sample=array();
+$sample = array();
 
 foreach ($result as $row) {
-   $sample[$row['id_alternative']][$row['id_criteria']] = $row['weights'];
+    $sample[$row['id_alternative']][$row['id_criteria']] = $row['weights'];
 }
-
-
 
 $normal = $sample;
-foreach($kriteria as $id_kriteria=>$k){
-
-   $pembagi=0;
-      foreach($alternatif as $id_ikm=>$a){
-      $pembagi+=pow($sample[$id_ikm][$id_kriteria],2);
-
-   }
-   foreach($alternatif as $id_ikm=>$a){
-      $normal[$id_ikm][$id_kriteria]/=sqrt($pembagi);
-   }
-  }
-
-
-$optimasi=array();
-foreach($alternatif as $id_ikm=>$a){
-   $optimasi[$id_ikm] = 0;
-   foreach($kriteria as $id_kriteria => $k){
-     $optimasi[$id_ikm] += $normal[$id_ikm][$id_kriteria] * ($k[1] == 'benefit' ? 1 : -1) * $k[2];
+foreach ($kriteria as $id_kriteria => $k) {
+    $pembagi = 0;
+    foreach ($alternatif as $id_ikm => $a) {
+        $pembagi += pow($sample[$id_ikm][$id_kriteria], 2);
     }
-   
+    foreach ($alternatif as $id_ikm => $a) {
+        $normal[$id_ikm][$id_kriteria] /= sqrt($pembagi);
+    }
+}
+
+$optimasi = array();
+foreach ($alternatif as $id_ikm => $a) {
+    $optimasi[$id_ikm] = 0;
+    foreach ($kriteria as $id_kriteria => $k) {
+        $optimasi[$id_ikm] += $normal[$id_ikm][$id_kriteria] * ($k[1] == 'benefit' ? 1 : -1) * $k[2];
+    }
+}
+
+// Sorting and Ranking
+arsort($optimasi); // Sorts the $optimasi array in descending order by value
+
+// Displaying Ranked Results
+$rank = 1;
+foreach ($optimasi as $id_ikm => $score) {
+    echo "Rank $rank: Course ID $id_ikm - Score: $score\n";
+    echo "Course Name: " . $alternatif[$id_ikm][0] . ", Institution: " . $alternatif[$id_ikm][2] . "\n";
+    $rank++;
 }
 ?>
+
 
 <br />
 
