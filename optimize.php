@@ -72,7 +72,7 @@ foreach ($optimasi as $id_ikm => $score) {
 
 <br />
 
-<div class="container-fluid">
+<!-- <div class="container-fluid">
   <div class="col-xl-12 col-lg-8">
     <div class="card shadow mb-4">
       <div class="card-header">
@@ -110,9 +110,9 @@ foreach ($optimasi as $id_ikm => $score) {
       </div>
     </div>
   </div>
-</div>
+</div> -->
 
-<div class="container-fluid">
+<!-- <div class="container-fluid">
   <div class="col-xl-12 col-lg-8">
     <div class="card shadow mb-4">
       <div class="card-header bg-info text-white">
@@ -144,8 +144,8 @@ foreach ($optimasi as $id_ikm => $score) {
       </div>
     </div>
   </div>
-</div>
-                    
+</div> -->
+
 
 <div class="container-fluid">
   <div class="col-xl-12 col-lg-8">
