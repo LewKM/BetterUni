@@ -524,7 +524,7 @@ mysqli_close($db);
 						} elseif ($score >= 7) {
 							$scoreClass = "text-primary";  // Good
 							$progressColor = "bg-primary"; // Blue
-							$borderColor = "border-primary";
+								
 						} elseif ($score >= 4) {
 							$scoreClass = "text-warning";  // Needs Improvement
 							$progressColor = "bg-warning"; // Yellow

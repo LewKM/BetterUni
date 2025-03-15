@@ -99,55 +99,58 @@ arsort($optimasi); // Sorts the $optimasi array in descending order by value
                   </tr>
                 </thead>
                 <tbody>
-  <?php 
-    foreach ($optimasi as $key => $value): 
-      // Convert score to percentage (out of 10)
-      $scoreOutOf10 = $value;
-      $progressPercentage = ($scoreOutOf10 / 10) * 100;
+          <?php 
+            foreach ($optimasi as $key => $value): 
+              // Convert score to percentage (out of 10)
+              $scoreOutOf10 = $value;
+              $progressPercentage = ($scoreOutOf10 / 10) * 100;
 
-      // Color coding based on score
-      if ($scoreOutOf10 >= 7) {
-        $progressClass = "bg-success"; // High performance
-        $textClass = "text-success";
-      } elseif ($scoreOutOf10 >= 5) {
-        $progressClass = "bg-primary"; // Moderate performance
-        $textClass = "text-primary";
-      } elseif ($scoreOutOf10 >= 3) {
-        $progressClass = "bg-warning"; // Low performance
-        $textClass = "text-warning";
-      } else {
-        $progressClass = "bg-danger"; // Poor performance
-        $textClass = "text-danger";
-      }
-  ?>
-  <tr class="border-bottom border-light">
-    <!-- Optimized Course -->
-    <td class="font-weight-bold text-primary"> <?php echo $alternatif[$key][0]; ?> </td>
+              // Color coding based on score
+              if ($scoreOutOf10 >= 7) {
+                $progressClass = "bg-success"; // High performance
+                $textClass = "text-success";
+                $borderColor = "#border-success"; // Green border
+              } elseif ($scoreOutOf10 >= 5) {
+                $progressClass = "bg-primary"; // Moderate performance
+                $textClass = "text-primary";
+                $borderColor = "border-primary"; // Blue border
+              } elseif ($scoreOutOf10 >= 3) {
+                $progressClass = "bg-warning"; // Low performance
+                $textClass = "text-warning";
+                $borderColor = "#border-warning"; // Yellow border
+              } else {
+                $progressClass = "bg-danger"; // Poor performance
+                $textClass = "text-danger";
+                $borderColor = "border-danger"; // Red border
+              }
+          ?>
+          <tr class="border-bottom border-light">
+            <!-- Optimized Course -->
+            <td class="font-weight-bold text-primary"> <?php echo $alternatif[$key][0]; ?> </td>
 
-    <!-- Visual Progress Bar -->
-    <td>
-      <div class="progress shadow-sm position-relative" 
-        style="height: 12px; border: 2px solid rgba(0, 0, 0, 0.1);">
-        <div class="progress-bar <?php echo $progressClass; ?>" 
-          role="progressbar"
-          style="width: <?php echo min(100, $progressPercentage); ?>%; transition: width 0.6s ease-in-out;"
-          aria-valuenow="<?php echo $scoreOutOf10; ?>" 
-          aria-valuemin="0" 
-          aria-valuemax="10">
-        </div>
-      </div>
-    </td>
+            <!-- Visual Progress Bar -->
+            <td>
+              <div class="progress shadow-sm position-relative " 
+                style="height: 12px; border: 2px solid <?php echo $borderColor; ?>;">
+                <div class="progress-bar <?php echo $progressClass; ?>" 
+                  role="progressbar"
+                  style="width: <?php echo min(100, $progressPercentage); ?>%; transition: width 0.6s ease-in-out; "
+                  aria-valuenow="<?php echo $scoreOutOf10; ?>" 
+                  aria-valuemin="0" 
+                  aria-valuemax="10">
+                </div>
+              </div>
+            </td>
 
-    <!-- Score Display -->
-    <td class="text-center">
-      <span class="font-weight-bold <?php echo $textClass; ?>">
-        <?php echo number_format($scoreOutOf10, 2); ?>
-      </span>
-    </td>
-  </tr>
-  <?php endforeach; ?>
-</tbody>
-
+            <!-- Score Display -->
+            <td class="text-center">
+              <span class="font-weight-bold <?php echo $textClass; ?>">
+                <?php echo number_format($scoreOutOf10, 2); ?>
+              </span>
+            </td>
+          </tr>
+          <?php endforeach; ?>
+        </tbody>
     </table>
   </div>
 </div>
