@@ -1,3 +1,13 @@
+CREATE TABLE IF NOT EXISTS courses(
+    id_alternative TINYINT(3) UNSIGNED AUTO_INCREMENT,
+    coursecode INT(7) NOT NULL,
+    institution VARCHAR(100) NOT NULL,
+    coursename VARCHAR(100) NOT NULL,
+    cutoffpoints FLOAT NOT NULL,
+    clustergroup VARCHAR(100) NOT NULL,
+    PRIMARY KEY(id_alternative)
+)ENGINE=InnoDB;
+
 INSERT INTO `courses`(`id_alternative`, `coursecode`, `institution`, `coursename`, `cutoffpoints`, `clustergroup`) 
 VALUES
 (1, 1249107,'JOMO KENYATTA UNIVERSITY OF AGRICULTURE AND TECHNOLOGY','BACHELOR OF SCIENCE IN ACTUARIAL SCIENCE', 43.073, "cluster 12"),
