@@ -60,121 +60,40 @@ foreach ($alternatif as $id_ikm => $a) {
 // Sorting and Ranking
 arsort($optimasi); // Sorts the $optimasi array in descending order by value
 
-// Displaying Ranked Results
-$rank = 1;
-foreach ($optimasi as $id_ikm => $score) {
-    echo "Rank $rank: Course ID $id_ikm - Score: $score\n";
-    echo "Course Name: " . $alternatif[$id_ikm][0] . ", Institution: " . $alternatif[$id_ikm][2] . "\n";
-    $rank++;
-}
-?>
+// // Displaying Ranked Results
+// $rank = 1;
+// foreach ($optimasi as $id_ikm => $score) {
+//     echo "Rank $rank: Course ID $id_ikm - Score: $score\n";
+//     echo "Course Name: " . $alternatif[$id_ikm][0] . ", Institution: " . $alternatif[$id_ikm][2] . "\n";
+//     $rank++;
+// }
+// ?>
 
 
 <br />
 
-<!-- <div class="container-fluid">
-  <div class="col-xl-12 col-lg-8">
-    <div class="card shadow mb-4">
-      <div class="card-header">
-        <div class="row">
-          <div class="col-lg-6 col-xl-6">
-            <h5 class="mt-2 font-weight text-info"> <b> Alternative Value Capture </b></h5>
-          </div>
-        </div>
-      </div>
-      <div class="card-body">
-        <table border="border-left-info" class="display table table-bordered" width="100%" cellspacing="0">
-          <thead align="center">
-            <tr>
-              <th>Courses</th>
-              <?php
-                  foreach ($kriteria as $key => $value) {
-                  echo "<th>".$value[0]."</th>";
-                }
-                ?>
-            </tr>
-          </thead>
-          <tbody align="center">
-            <?php
-              foreach ($sample as $key => $value) {
-                echo "<tr>";
-                echo "<td>".$alternatif[$key][0]."</td>";
-              for ($i=1; $i <= count($value) ; $i++) {
-                echo "<td>".$value[$i]."</td>";
-                }
-                echo "</tr>";
-              }
-              ?>
-          </tbody>
-        </table>
-      </div>
-    </div>
-  </div>
-</div> -->
-
-<!-- <div class="container-fluid">
-  <div class="col-xl-12 col-lg-8">
-    <div class="card shadow mb-4">
-      <div class="card-header bg-info text-white">
-        <h5 class="mt-2 font-weight-bold">Creating a NORMALIZATION Matrix</h5>
-      </div>
-      <div class="card-body">
-        <div class="table-responsive">
-          <table class="table table-bordered table-hover text-center" width="100%" cellspacing="0">
-            <thead class="thead-dark">
-              <tr>
-                <th>Courses</th>
-                <?php foreach ($kriteria as $key => $value): ?>
-                  <th><?= htmlspecialchars($value[0]) ?></th>
-                <?php endforeach; ?>
-              </tr>
-            </thead>
-            <tbody>
-              <?php foreach ($normal as $key => $value): ?>
-                <tr>
-                  <td class="font-weight-bold"><?= htmlspecialchars($alternatif[$key][0]) ?></td>
-                  <?php for ($i = 1; $i <= count($value); $i++): ?>
-                    <td><?= number_format($value[$i], 5) ?></td>
-                  <?php endfor; ?>
-                </tr>
-              <?php endforeach; ?>
-            </tbody>
-          </table>
-        </div>
-      </div>
-    </div>
-  </div>
-</div> -->
-
 
 <div class="container-fluid">
-  <div class="col-xl-12 col-lg-8">
-    <div class="card shadow mb-4">
-      <div class="card-header">
-        <div class="row">
-          <div class="col-lg-6 col-xl-6">
-            <h5 class="mt-2 font-weight text-info"> <b> Calculation of optimization values </b></h5>
-          </div>
-        </div>
+  <div class="col-xl-12 col-lg-10 mx-auto">
+    <div class="card shadow-lg mb-4 border-info">
+      <div class="card-header bg-info text-white">
+        <h5 class="mt-2 font-weight-bold">Calculation of Optimization Values</h5>
       </div>
       <div class="card-body">
-        <table border="border-left-info" class="display table table-bordered" width="100%" cellspacing="0">
-          <thead align="center">
+        <table class="table table-hover table-bordered text-center">
+          <thead class="thead-dark">
             <tr>
               <th>Optimized Courses</th>
               <th>Optimization Value</th>
             </tr>
           </thead>
-          <tbody align="center">
-            <?php
-              foreach ($optimasi as $key => $value) {
-                echo "<tr>";
-                echo "<td>".$alternatif[$key][0]."</td>";
-                $angka_format = number_format($value,6);
-                echo "<td>" .$angka_format. "</td>";
-                echo "</tr>";
-              }
-              ?>
+          <tbody>
+            <?php foreach ($optimasi as $key => $value): ?>
+              <tr>
+                <td class="font-weight-bold"> <?php echo $alternatif[$key][0]; ?> </td>
+                <td class="text-success font-weight-bold"> <?php echo number_format($value, 6); ?> </td>
+              </tr>
+            <?php endforeach; ?>
           </tbody>
         </table>
       </div>
@@ -183,26 +102,21 @@ foreach ($optimasi as $id_ikm => $score) {
 </div>
 
 <div class="container-fluid">
-  <div class="col-xl-12 col-lg-8">
-    <div class="card shadow mb-4">
-      <div class="card-header">
-        <div class="row">
-          <div class="col-lg-6 col-xl-6">
-            <h5 class="mt-2 font-weight text-info"> <b> Recommended Courses </b></h5>
-          </div>
-        </div>
+  <div class="col-xl-12 col-lg-10 mx-auto">
+    <div class="card shadow-lg border-success">
+      <div class="card-header bg-success text-white">
+        <h5 class="mt-2 font-weight-bold">Recommended Course</h5>
       </div>
-      <div class="card-body">
+      <div class="card-body text-center">
         <?php
-        arsort($optimasi);
-        $index = key($optimasi);
-        $hasil_alternatif = $alternatif[$index][0];
-        $hasil_optimasi = number_format($optimasi[$index],6);
-
-        echo " The result is an alternative <b><em>".$hasil_alternatif."</em></b> ";
-        echo " with value <b><em>".$hasil_optimasi."</em></b> selected to be prioritized to get help";
-        echo ""
+          arsort($optimasi);
+          $index = key($optimasi);
+          $hasil_alternatif = $alternatif[$index][0];
+          $hasil_optimasi = number_format($optimasi[$index], 6);
         ?>
+        <h4 class="text-primary font-weight-bold">✨ Best Course to Start: <span class="text-success"> <?php echo $hasil_alternatif; ?> </span></h4>
+        <p class="lead text-dark">This course has the highest optimization value of <b class="text-danger"> <?php echo $hasil_optimasi; ?> </b>, making it the top recommendation for you to begin your learning journey.</p>
+        <a href="#" class="btn btn-outline-success btn-lg">Explore Course</a>
       </div>
     </div>
   </div>
