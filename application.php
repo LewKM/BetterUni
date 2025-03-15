@@ -513,45 +513,45 @@ mysqli_close($db);
                     $scoreClass = "text-danger";
                     
 					// Convert the score to a percentage (out of 12 points)
-// Convert the score to a percentage (out of 12 points)
-$scorePercentage = ($score / 12) * 100;
+					// Convert the score to a percentage (out of 12 points)
+					$scorePercentage = ($score / 12) * 100;
 
-// Assign Bootstrap classes based on a 12-point scale
-if ($score >= 10) {
-    $scoreClass = "text-success";  // Excellent
-    $progressColor = "bg-success"; // Green
-    $borderColor = "border-success";
-} elseif ($score >= 7) {
-    $scoreClass = "text-primary";  // Good
-    $progressColor = "bg-primary"; // Blue
-    $borderColor = "border-primary";
-} elseif ($score >= 4) {
-    $scoreClass = "text-warning";  // Needs Improvement
-    $progressColor = "bg-warning"; // Yellow
-    $borderColor = "border-warning";
-} else {
-    $scoreClass = "text-danger";   // Poor
-    $progressColor = "bg-danger";  // Red
-    $borderColor = "border-danger";
-}
+					// Assign Bootstrap classes based on a 12-point scale
+					if ($score >= 10) {
+						$scoreClass = "text-success";  // Excellent
+						$progressColor = "bg-success"; // Green
+						$borderColor = "border-success";
+					} elseif ($score >= 7) {
+						$scoreClass = "text-primary";  // Good
+						$progressColor = "bg-primary"; // Blue
+						$borderColor = "border-primary";
+					} elseif ($score >= 4) {
+						$scoreClass = "text-warning";  // Needs Improvement
+						$progressColor = "bg-warning"; // Yellow
+						$borderColor = "border-warning";
+					} else {
+						$scoreClass = "text-danger";   // Poor
+						$progressColor = "bg-danger";  // Red
+						$borderColor = "border-danger";
+					}
 
-// Display the decorated table row
-echo '<tr class="border-bottom">
-        <!-- Column 1: Subject -->
-        <td class="px-4 py-3 fw-bold">' . $subject[0] . '</td>
-        
-        <!-- Column 2: Progress Bar -->
-        <td class="px-4 py-3">
-          <div class="progress ' . $borderColor . ' shadow-sm" 
-            style="height: 12px; width: 100%; border: 2px solid;">
-            <div class="progress-bar ' . $progressColor . '" role="progressbar" 
-              style="width: ' . $scorePercentage . '%;"></div>
-          </div>
-        </td>
+					// Display the decorated table row
+					echo '<tr class="border-bottom">
+							<!-- Column 1: Subject -->
+							<td class="px-4 py-3 fw-bold">' . $subject[0] . '</td>
+							
+							<!-- Column 2: Progress Bar -->
+							<td class="px-4 py-3">
+							<div class="progress ' . $borderColor . ' shadow-sm" 
+								style="height: 12px; width: 100%; border: 2px solid;">
+								<div class="progress-bar ' . $progressColor . '" role="progressbar" 
+								style="width: ' . $scorePercentage . '%;"></div>
+							</div>
+							</td>
 
-        <!-- Column 3: Score Display -->
-        <td class="px-4 py-3 fw-bold ' . $scoreClass . ' text-center">' . $score . ' / 12</td>
-      </tr>';
+							<!-- Column 3: Score Display -->
+							<td class="px-4 py-3 fw-bold ' . $scoreClass . ' text-center">' . $score . ' / 12</td>
+						</tr>';
 
                   }
                 ?>

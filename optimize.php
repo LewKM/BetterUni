@@ -83,32 +83,71 @@ arsort($optimasi); // Sorts the $optimasi array in descending order by value
         <span class="badge bg-light text-primary">AI-Powered</span>
       </div>
       <div class="card-body bg-light">
-        <div class="table-responsive">
-          <table class="table table-hover border-0 text-center">
-            <thead>
-              <tr class="bg-dark text-white">
-                <th class="rounded-start"><i class="fas fa-graduation-cap me-2"></i>Optimized Courses</th>
-                <th class="rounded-end"><i class="fas fa-calculator me-2"></i>Optimization Score</th>
-              </tr>
-            </thead>
-            <tbody>
-              <?php foreach ($optimasi as $key => $value): ?>
-                <tr class="border-bottom border-light">
-                  <td class="font-weight-bold text-primary"> <?php echo $alternatif[$key][0]; ?> </td>
-                  <td>
-                    <div class="d-flex align-items-center justify-content-center">
-                      <div class="progress w-50 me-2" style="height: 8px;">
-                        <div class="progress-bar bg-gradient-success" role="progressbar" style="width: <?php echo min(100, $value * 100); ?>%" aria-valuenow="<?php echo $value; ?>" aria-valuemin="0" aria-valuemax="1"></div>
-                      </div>
-                      <span class="text-success font-weight-bold"> <?php echo number_format($value, 6); ?> </span>
-                    </div>
-                  </td>
-                </tr>
-              <?php endforeach; ?>
-            </tbody>
-          </table>
-        </div>
-      </div>
+  <div class="table-responsive">
+    <table class="table table-hover border-0 text-center">
+      <thead>
+        <tr class="bg-dark">
+          <th class="rounded-start text-white">
+            <i class="fas fa-graduation-cap me-2"></i> Optimized Courses
+          </th>
+          <th class="text-white">
+            <i class="fas fa-chart-bar me-2"></i> Visual Progress
+          </th>
+          <th class=" text-start rounded-end text-white">
+            <i class="fas fa-calculator me-2"></i> Optimization Score
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <?php foreach ($optimasi as $key => $value): 
+          // Convert score to a scale of 10
+          $scoreOutOf10 = $value * 10;
+          $progressPercentage = ($scoreOutOf10 / 10) * 100;
+
+          // Color coding based on score
+          if ($scoreOutOf10 >= 8) {
+            $progressClass = "bg-success"; // High performance
+            $textClass = "text-success";
+          } elseif ($scoreOutOf10 >= 5) {
+            $progressClass = "bg-primary"; // Moderate performance
+            $textClass = "text-primary";
+          } elseif ($scoreOutOf10 >= 3) {
+            $progressClass = "bg-warning"; // Low performance
+            $textClass = "text-warning";
+          } else {
+            $progressClass = "bg-danger"; // Poor performance
+            $textClass = "text-danger";
+          }
+        ?>
+        <tr class="border-bottom border-light">
+          <!-- Optimized Course -->
+          <td class="font-weight-bold text-primary"> <?php echo $alternatif[$key][0]; ?> </td>
+
+          <!-- Visual Progress Bar with Shading -->
+          <td>
+  <div class="progress shadow-sm position-relative" style="height: 12px; border: 2px solid rgba(0, 0, 0, 0.1); background: linear-gradient(to right, rgba(0, 128, 0, 0.2), rgba(0, 128, 0, 0.05));">
+    <div class="progress-bar <?php echo $progressClass; ?>" 
+      role="progressbar"
+      style="width: <?php echo min(100, $progressPercentage); ?>%; transition: width 0.6s ease-in-out;"
+      aria-valuenow="<?php echo $scoreOutOf10; ?>" 
+      aria-valuemin="0" 
+      aria-valuemax="10">
+    </div>
+  </div>
+</td>
+
+
+          <!-- Score Display -->
+          <td>
+            <span class="font-weight-bold <?php echo $textClass; ?>"> <?php echo number_format($scoreOutOf10, 2); ?> %</span>
+          </td>
+        </tr>
+        <?php endforeach; ?>
+      </tbody>
+    </table>
+  </div>
+</div>
+
     </div>
   </div>
 </div>
@@ -139,21 +178,42 @@ arsort($optimasi); // Sorts the $optimasi array in descending order by value
             <span class="text-gradient-success"> <?php echo $hasil_alternatif; ?> </span>
           </h4>
           
+          <?php 
+          // Convert the score out of 10 to a percentage
+          $scorePercentage = min(100, ($optimasi[$index] / 10) * 100);
+
+          // Adjust the stroke-dashoffset for circular progress (339.292 is the full circle)
+          $strokeOffset = 339.292 * (1 - ($scorePercentage / 100));
+          ?>
+
           <div class="optimization-score my-4">
-            <div class="d-flex justify-content-center align-items-center">
-              <div class="circular-progress me-3">
-                <svg width="80" height="80" viewBox="0 0 120 120">
-                  <circle cx="60" cy="60" r="54" fill="none" stroke="#e6e6e6" stroke-width="12" />
-                  <circle cx="60" cy="60" r="54" fill="none" stroke="#28a745" stroke-width="12" 
-                    stroke-dasharray="339.292" stroke-dashoffset="<?php echo 339.292 * (1 - min(1, $optimasi[$index])); ?>" />
-                </svg>
-                <span class="position-absolute top-50 start-50 translate-middle text-success font-weight-bold">
-                  <?php echo number_format($optimasi[$index] * 100, 1); ?>%
-                </span>
+            <div class="row align-items-center text-center">
+              <!-- Column for Circular Progress -->
+              <div class="col-md-4 col-sm-12 d-flex justify-content-center">
+                <div class="circular-progress position-relative">
+                  <svg width="100" height="100" viewBox="0 0 120 120">
+                    <!-- Background Circle -->
+                    <circle cx="60" cy="60" r="54" fill="none" stroke="#e6e6e6" stroke-width="12" />
+                    
+                    <!-- Progress Circle -->
+                    <circle cx="60" cy="60" r="54" fill="none" stroke="#28a745" stroke-width="12"
+                      stroke-dasharray="339.292" 
+                      stroke-dashoffset="<?php echo $strokeOffset; ?>" 
+                      stroke-linecap="round"
+                      style="transition: stroke-dashoffset 0.6s ease-in-out;" />
+                  </svg>
+
+                  <!-- Score Percentage Inside the Circle -->
+                  <span class="position-absolute top-50 start-50 translate-middle text-success fw-bold fs-5">
+                    <?php echo number_format($scorePercentage, 2); ?>%
+                  </span>
+                </div>
               </div>
-              <div class="score-details text-start">
-                <p class="mb-0 text-dark">Optimization Score</p>
-                <h5 class="text-danger font-weight-bold"><?php echo $hasil_optimasi; ?></h5>
+
+              <!-- Column for Score Details -->
+              <div class="col-md-8 col-sm-12 text-md-start text-center mt-3 mt-md-0">
+                <p class="mb-1 text-muted fw-semibold">Optimization Score</p>
+                <h5 class="text-danger fw-bold"><?php echo number_format($optimasi[$index], 2); ?> / 10</h5>
               </div>
             </div>
           </div>
@@ -176,3 +236,72 @@ arsort($optimasi); // Sorts the $optimasi array in descending order by value
     </div>
   </div>
 </div>
+
+<style>
+.bg-gradient-success {
+  background: linear-gradient(45deg, #11998e, #38ef7d);
+}
+
+.bg-dark {
+  background: #212529 !important;
+}
+
+.progress {
+  background-color: rgba(0, 0, 0, 0.05);
+  border-radius: 10px;
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+.progress-bar {
+  transition: width 1s ease-in-out;
+  border-radius: 10px;
+  position: relative;
+  overflow: hidden;
+}
+
+.progress-bar::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0) 25%,
+    rgba(255, 255, 255, 0.15) 50%,
+    rgba(255, 255, 255, 0) 75%
+  );
+  animation: shine 1.5s infinite;
+}
+
+@keyframes shine {
+  0% {
+    left: -100%;
+  }
+  100% {
+    left: 100%;
+  }
+}
+
+.table {
+  border-collapse: separate;
+  border-spacing: 0;
+}
+
+.table th, .table td {
+  padding: 1rem;
+  vertical-align: middle;
+}
+
+.rounded-start {
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+}
+
+.rounded-end {
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+</style>
