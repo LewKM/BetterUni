@@ -353,6 +353,19 @@ iframe {
   background: #333333;
 }
 
+.input-group input,
+.form-select,
+.btn {
+  border-radius: 50px !important; /* Adjusted to maintain roundness while keeping usability */
+}
+
+.input-group-text {
+  border-radius: 50% !important;
+}
+
+.input-group {
+  overflow: hidden; /* Ensures the border-radius applies properly */
+}
 
 
 /*------------------------------------------------------------------

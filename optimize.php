@@ -130,7 +130,7 @@ arsort($optimasi); // Sorts the $optimasi array in descending order by value
 
             <!-- Visual Progress Bar -->
             <td>
-              <div class="progress shadow-sm position-relative " 
+              <div class="progress shadow-sm position-relative  " 
                 style="height: 12px; border: 2px solid <?php echo $borderColor; ?>;">
                 <div class="progress-bar <?php echo $progressClass; ?>" 
                   role="progressbar"

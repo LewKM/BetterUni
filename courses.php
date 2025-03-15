@@ -135,23 +135,23 @@
 		                	<li>
 		                		<a href="courses.php" class="ttr-material-button"><span class="ttr-label">Degree</span></a>
 		                	</li>
-		                	<li>
+		                	<!-- <li>
 		                		<a href="diploma.html" class="ttr-material-button"><span class="ttr-label">Diploma</span></a>
 		                	</li>
 							<li>
 		                		<a href="certificate.html" class="ttr-material-button"><span class="ttr-label">Certificate</span></a>
-		                	</li>
+		                	</li> -->
 		                </ul>
 		            </li>
 
-					<li>
+					<!-- <li>
 						<a href="application.php" class="ttr-material-button">
 							<span class="ttr-icon"><i class="ti-home"></i></span>
 		                	<span class="ttr-label">Application/Revision</span>
 		                </a>
-		            </li>
+		            </li> -->
 
-					<li>
+					<!-- <li>
 						<a href="#" class="ttr-material-button">
 							<span class="ttr-icon"><i class="ti-email"></i></span>
 		                	<span class="ttr-label">Mailbox</span>
@@ -168,7 +168,7 @@
 		                		<a href="mailbox-read.html" class="ttr-material-button"><span class="ttr-label">Mail Read</span></a>
 		                	</li>
 		                </ul>
-		            </li>
+		            </li> -->
 				</ul>
 				<!-- sidebar menu end -->
 			</nav>
@@ -292,49 +292,219 @@
 				</div>
 			</div>
 			<!-- Card END -->
-			<div class="row">
-				<span class="login100-form-title">
-					<table border="2">
-						<tr>
-						  <td><em>Course Code</em></td>
-						  <td><em>Course Name</em></td>
-						  <td><em>Institution</em></td>
-						  <td><em>Cut-Off Points</em></td>
-						  <td><em>Cluster Group</em></td>
-						</tr>
-					  
-					  <?php
-					  
-					  include "dbConn.php"; // Using database connection file here
-					  
-					  $records = mysqli_query($db,"select * from courses"); // fetch data from database
-					  
-					  while($data = mysqli_fetch_array($records))
-					  {
-					  ?>
-						<tr>
-						  <td><?php echo $data['coursecode']; ?></td>
-						  <td><em><?php echo $data['coursename']; ?></em></td>
-						  <td><?php echo $data['institution']; ?></td>
-						  <td><?php echo $data['cutoffpoints']; ?></td>
-						  <td><?php echo $data['clustergroup']; ?></td>
-						</tr>	
-					  <?php
-					  }
-					  ?>
-					</table>
-					  
-					  <?php mysqli_close($db); // Close connection ?
-					  ?>	
-					</span>
-				<!--form start here-->
-				
-				<form class="login100-form validate-form" action="cluster.php" method="post">
-					
-					
-				</form>
-			</div>
-		</div>		
+			<!-- Hero Section -->
+<div class="container-fluid px-0 mb-5">
+  <div class="bg-primary bg-gradient text-white p-5 rounded-3 shadow-lg position-relative overflow-hidden">
+    <div class="position-absolute top-0 end-0 opacity-10">
+      <i class="fas fa-graduation-cap fa-10x"></i>
+    </div>
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-lg-8">
+          <h1 class="display-4 fw-bold">Course Selection Portal</h1>
+          <p class="lead fs-10 mb-4">Discover academic paths that align with your strengths and aspirations</p>
+          <button class="btn btn-light btn-lg px-4 me-md-2">Get Started <i class="fas fa-arrow-right ms-2"></i></button>
+        </div>
+        <div class="col-lg-4 d-none d-lg-block text-end">
+          <div class="p-3 bg-white bg-opacity-25 rounded-circle d-inline-block">
+            <i class="fa fa-search fa-4x text-dark"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Summary Panel -->
+<div class="container mb-5">
+  <div class="row g-4">
+    <div class="col-md-4">
+      <div class="card border-0 shadow-lg h-100 rounded-3 text-center">
+        <div class="card-body p-4">
+          <div class="p-3 bg-success bg-opacity-10 rounded-circle d-inline-block mb-3">
+            <i class="fa fa-book fa-2x text-white"></i>
+          </div>
+          <h5 class="card-title fw-bold text-success">Total Courses</h5>
+          <p class="card-text display-3 fw-bold mb-0">
+            <?php
+            include "dbConn.php";
+            $courseCount = mysqli_fetch_array(mysqli_query($db, "SELECT COUNT(*) AS total FROM courses"))['total'];
+            echo $courseCount;
+            ?>
+          </p>
+          <p class="text-muted mt-2">Available academic programs</p>
+        </div>
+        <div class="card-footer bg-success bg-opacity-10 border-0 py-3">
+          <a href="#" class="text-white text-decoration-none fw-bold">View All Courses <i class="fa fa-chevron-right ms-1"></i></a>
+        </div>
+      </div>
+    </div>
+    
+    <div class="col-md-4">
+      <div class="card border-0 shadow-lg h-100 rounded-3 text-center">
+        <div class="card-body p-4">
+          <div class="p-3 bg-warning bg-opacity-10 rounded-circle d-inline-block mb-3">
+            <i class="fa fa-university fa-2x text-white"></i>
+          </div>
+          <h5 class="card-title fw-bold text-warning">Top Institution</h5>
+          <p class="card-text display-6 fw-bold mb-0">
+            <?php
+            $topInstitution = mysqli_fetch_array(mysqli_query($db, "SELECT institution, COUNT(*) as count FROM courses GROUP BY institution ORDER BY count DESC LIMIT 1"));
+            echo $topInstitution['institution'] ?? 'N/A';
+            ?>
+          </p>
+          <!-- <p class="text-muted mt-2">Most represented in our database</p> -->
+        </div>
+        <div class="card-footer bg-warning bg-opacity-10 border-0 py-3">
+          <a href="#" class="text-white text-decoration-none fw-bold">Institution Details <i class="fa fa-chevron-right ms-1"></i></a>
+        </div>
+      </div>
+    </div>
+    
+    <div class="col-md-4">
+      <div class="card border-0 shadow-lg h-100 rounded-3 text-center">
+        <div class="card-body p-4">
+          <div class="p-3 bg-info bg-opacity-10 rounded-circle d-inline-block mb-3">
+            <i class="fa fa-graduation-cap fa-2x text-white"></i>
+          </div>
+          <h5 class="card-title fw-bold text-info">Average Cut-Off Points</h5>
+          <p class="card-text display-3 fw-bold mb-0">
+            <?php
+            $averageCutoff = mysqli_fetch_array(mysqli_query($db, "SELECT AVG(cutoffpoints) AS avg_cutoff FROM courses"))['avg_cutoff'];
+            echo number_format($averageCutoff, 2);
+            ?>
+          </p>
+          <p class="text-muted mt-2">Mean admission requirement</p>
+        </div>
+        <div class="card-footer bg-info bg-opacity-10 border-0 py-3">
+          <a href="#" class="text-white text-decoration-none fw-bold">Cutoff Analysis <i class="fa fa-chevron-right ms-1"></i></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Search & Filter Section -->
+<div class="container mb-4">
+  <div class="card border-0 shadow-lg rounded-3">
+    <div class="card-body p-4">
+      <div class="row g-3">
+        <div class="col-lg-4">
+          <div class="input-group">
+            <span class="input-group-text bg-white border-end-0">
+              <i class="fas fa-search text-primary"></i>
+            </span>
+            <input type="text" id="courseSearch" class="form-control border-start-0 py-2" placeholder="Search courses...">
+          </div>
+        </div>
+        <div class="col-lg-3">
+          <select class="form-select py-0" id="institutionFilter">
+            <option value="">All Institutions</option>
+            <?php
+            include "dbConn.php";
+            $institutions = mysqli_query($db, "SELECT DISTINCT institution FROM courses ORDER BY institution");
+            while ($inst = mysqli_fetch_array($institutions)) {
+              echo "<option value='{$inst['institution']}'>{$inst['institution']}</option>";
+            }
+            ?>
+          </select>
+        </div>
+        <div class="col-lg-3">
+          <select class="form-select py-0" id="clusterFilter">
+            <option value="">All Cluster Groups</option>
+            <?php
+            $clusters = mysqli_query($db, "SELECT DISTINCT clustergroup FROM courses ORDER BY clustergroup");
+            while ($cluster = mysqli_fetch_array($clusters)) {
+              echo "<option value='{$cluster['clustergroup']}'>{$cluster['clustergroup']}</option>";
+            }
+            ?>
+          </select>
+        </div>
+        <div class="col-lg-2">
+          <button class="btn btn-primary w-100 py-2" id="resetFilters">
+            <i class="fa fa-sync-alt me-2"></i>Reset
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- Courses Table -->
+<div class="container mb-5">
+  <div class="card border-0 shadow-lg rounded-3">
+    <div class="card-header bg-white p-4 border-0">
+      <div class="d-flex justify-content-between align-items-center">
+        <h4 class="mb-0 fw-bold text-primary">Available Courses</h4>
+        <div class="badge bg-primary  px-3 py-2 rounded-5 text-white">
+          <i class="fa fa-list me-1"></i> 
+          <span id="courseCount">
+            <?php echo $courseCount; ?> 
+          </span> Programs
+        </div>
+      </div>
+    </div>
+    <div class="table-responsive">
+      <table class="table table-hover align-middle mb-0">
+        <thead class="table-light">
+          <tr>
+            <th class="px-4 py-3 fw-bold">Course Code</th>
+            <th class="px-4 py-3 fw-bold">Course Name</th>
+            <th class="px-4 py-3 fw-bold">Institution</th>
+            <th class="px-4 py-3 fw-bold">Cut-Off Points</th>
+            <th class="px-4 py-3 fw-bold">Cluster Group</th>
+            
+          </tr>
+        </thead>
+        <tbody id="courseTable">
+          <?php
+          $records = mysqli_query($db, "SELECT * FROM courses");
+          while ($data = mysqli_fetch_array($records)) {
+            // Determine if course is eligible based on cutoff points
+            $eligibilityClass = "bg-white bg-opacity-10 text-danger";
+            $eligibilityText = "High Requirements";
+            
+            if ($data['cutoffpoints'] <= $averageCutoff) {
+              $eligibilityClass = "bg-white bg-opacity-10 text-success";
+              $eligibilityText = "Eligible";
+            }
+            
+            echo "<tr>
+                    <td class='px-4 py-3'>{$data['coursecode']}</td>
+                    <td class='px-4 py-3 fw-bold'>{$data['coursename']}</td>
+                    <td class='px-4 py-3'><span class='badge bg-light text-dark'>{$data['institution']}</span></td>
+                    <td class='px-4 py-3'>
+                      <span class='badge $eligibilityClass px-3 py-2'>
+                        {$data['cutoffpoints']} Points
+                      </span>
+                    </td>
+                    <td class='px-4 py-3'>{$data['clustergroup']}</td>
+                  </tr>";
+          }
+          mysqli_close($db);
+          ?>
+        </tbody>
+      </table>
+    </div>
+    <div class="card-footer bg-white p-3 border-0 d-flex justify-content-between align-items-center">
+      <div>
+        <small class="text-muted">Showing <span class="fw-bold">1-10</span> of <span class="fw-bold"><?php echo $courseCount; ?></span> courses</small>
+      </div>
+      <nav aria-label="Course navigation">
+        <ul class="pagination mb-0">
+          <li class="page-item disabled"><a class="page-link" href="#">Previous</a></li>
+          <li class="page-item active"><a class="page-link" href="#">1</a></li>
+          <li class="page-item"><a class="page-link" href="#">2</a></li>
+          <li class="page-item"><a class="page-link" href="#">3</a></li>
+          <li class="page-item"><a class="page-link" href="#">Next</a></li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
 	</main>
 	<div class="ttr-overlay"></div>
 
@@ -358,6 +528,18 @@
 	<script src='assets/vendors/calendar/moment.min.js'></script>
 	<script src='assets/vendors/calendar/fullcalendar.js'></script>
 	<script src='assets/vendors/switcher/switcher.js'></script>
+	<!-- JavaScript for Course Search -->
+<script>
+  document.getElementById('courseSearch').addEventListener('input', function () {
+    let filter = this.value.toLowerCase();
+    let rows = document.querySelectorAll("#courseTable tr");
+
+    rows.forEach(row => {
+      let text = row.textContent.toLowerCase();
+      row.style.display = text.includes(filter) ? "" : "none";
+    });
+  });
+</script>
 	<script>
 		$(document).ready(function() {
 
