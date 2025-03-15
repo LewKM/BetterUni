@@ -115,42 +115,37 @@ foreach ($optimasi as $id_ikm => $score) {
 <div class="container-fluid">
   <div class="col-xl-12 col-lg-8">
     <div class="card shadow mb-4">
-      <div class="card-header">
-        <div class="row">
-          <div class="col-lg-6 col-xl-6">
-            <h5 class="mt-2 font-weight text-info"> <b> Creating a NORMALIZATION matrix </b></h5>
-          </div>
-        </div>
+      <div class="card-header bg-info text-white">
+        <h5 class="mt-2 font-weight-bold">Creating a NORMALIZATION Matrix</h5>
       </div>
       <div class="card-body">
-        <table border="border-left-info" class="display table table-bordered"  width="100%" cellspacing="0">
-          <thead align="center">
-            <tr>
-              <th>Courses</th>
-              <?php
-                  foreach ($kriteria as $key => $value) {
-                  echo "<th>".$value[0]."</th>";
-                }
-                ?>
-            </tr>
-          </thead>
-          <tbody align="center">
-            <?php
-              foreach ($normal as $key => $value) {
-                echo "<tr>";
-                echo "<td>".$alternatif[$key][0]."</td>";
-              for ($i=1; $i <= count($value) ; $i++) {
-                echo "<td>".$value[$i]."</td>";
-                }
-                echo "</tr>";
-              }
-            ?>
-          </tbody>
-        </table>
+        <div class="table-responsive">
+          <table class="table table-bordered table-hover text-center" width="100%" cellspacing="0">
+            <thead class="thead-dark">
+              <tr>
+                <th>Courses</th>
+                <?php foreach ($kriteria as $key => $value): ?>
+                  <th><?= htmlspecialchars($value[0]) ?></th>
+                <?php endforeach; ?>
+              </tr>
+            </thead>
+            <tbody>
+              <?php foreach ($normal as $key => $value): ?>
+                <tr>
+                  <td class="font-weight-bold"><?= htmlspecialchars($alternatif[$key][0]) ?></td>
+                  <?php for ($i = 1; $i <= count($value); $i++): ?>
+                    <td><?= number_format($value[$i], 5) ?></td>
+                  <?php endfor; ?>
+                </tr>
+              <?php endforeach; ?>
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
   </div>
 </div>
+                    
 
 <div class="container-fluid">
   <div class="col-xl-12 col-lg-8">
