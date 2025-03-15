@@ -75,27 +75,39 @@ arsort($optimasi); // Sorts the $optimasi array in descending order by value
 
 <div class="container-fluid">
   <div class="col-xl-12 col-lg-10 mx-auto">
-    <div class="card shadow-lg mb-4 border-info">
-      <div class="card-header bg-info text-white">
-        <h5 class="mt-2 font-weight-bold">Calculation of Optimization Values</h5>
+    <div class="card shadow-lg mb-4 border-0 rounded-lg overflow-hidden">
+      <div class="card-header bg-gradient-primary text-white d-flex justify-content-between align-items-center">
+        <h5 class="mt-2 font-weight-bold">
+          <i class="fas fa-chart-line me-2"></i>Course Optimization Analysis
+        </h5>
+        <span class="badge bg-light text-primary">AI-Powered</span>
       </div>
-      <div class="card-body">
-        <table class="table table-hover table-bordered text-center">
-          <thead class="thead-dark">
-            <tr>
-              <th>Optimized Courses</th>
-              <th>Optimization Value</th>
-            </tr>
-          </thead>
-          <tbody>
-            <?php foreach ($optimasi as $key => $value): ?>
-              <tr>
-                <td class="font-weight-bold"> <?php echo $alternatif[$key][0]; ?> </td>
-                <td class="text-success font-weight-bold"> <?php echo number_format($value, 6); ?> </td>
+      <div class="card-body bg-light">
+        <div class="table-responsive">
+          <table class="table table-hover border-0 text-center">
+            <thead>
+              <tr class="bg-dark text-white">
+                <th class="rounded-start"><i class="fas fa-graduation-cap me-2"></i>Optimized Courses</th>
+                <th class="rounded-end"><i class="fas fa-calculator me-2"></i>Optimization Score</th>
               </tr>
-            <?php endforeach; ?>
-          </tbody>
-        </table>
+            </thead>
+            <tbody>
+              <?php foreach ($optimasi as $key => $value): ?>
+                <tr class="border-bottom border-light">
+                  <td class="font-weight-bold text-primary"> <?php echo $alternatif[$key][0]; ?> </td>
+                  <td>
+                    <div class="d-flex align-items-center justify-content-center">
+                      <div class="progress w-50 me-2" style="height: 8px;">
+                        <div class="progress-bar bg-gradient-success" role="progressbar" style="width: <?php echo min(100, $value * 100); ?>%" aria-valuenow="<?php echo $value; ?>" aria-valuemin="0" aria-valuemax="1"></div>
+                      </div>
+                      <span class="text-success font-weight-bold"> <?php echo number_format($value, 6); ?> </span>
+                    </div>
+                  </td>
+                </tr>
+              <?php endforeach; ?>
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
   </div>
@@ -103,20 +115,63 @@ arsort($optimasi); // Sorts the $optimasi array in descending order by value
 
 <div class="container-fluid">
   <div class="col-xl-12 col-lg-10 mx-auto">
-    <div class="card shadow-lg border-success">
-      <div class="card-header bg-success text-white">
-        <h5 class="mt-2 font-weight-bold">Recommended Course</h5>
+    <div class="card shadow-lg border-0 rounded-lg overflow-hidden">
+      <div class="card-header bg-gradient-success text-white d-flex justify-content-between align-items-center">
+        <h5 class="mt-2 font-weight-bold">
+          <i class="fas fa-award me-2"></i>Your Personalized Recommendation
+        </h5>
+        <span class="badge bg-white text-success">Top Pick</span>
       </div>
-      <div class="card-body text-center">
+      <div class="card-body text-center bg-light">
         <?php
           arsort($optimasi);
           $index = key($optimasi);
           $hasil_alternatif = $alternatif[$index][0];
           $hasil_optimasi = number_format($optimasi[$index], 6);
         ?>
-        <h4 class="text-primary font-weight-bold">✨ Best Course to Start: <span class="text-success"> <?php echo $hasil_alternatif; ?> </span></h4>
-        <p class="lead text-dark">This course has the highest optimization value of <b class="text-danger"> <?php echo $hasil_optimasi; ?> </b>, making it the top recommendation for you to begin your learning journey.</p>
-        <a href="#" class="btn btn-outline-success btn-lg">Explore Course</a>
+        <div class="recommendation-container p-4">
+          <div class="recommendation-badge mb-3">
+            <span class="badge bg-primary text-white p-2"><i class="fas fa-robot me-1"></i>AI Recommendation</span>
+          </div>
+          
+          <h4 class="text-primary font-weight-bold">
+            <i class="fas fa-star text-warning me-2"></i>Optimal Course Match: 
+            <span class="text-gradient-success"> <?php echo $hasil_alternatif; ?> </span>
+          </h4>
+          
+          <div class="optimization-score my-4">
+            <div class="d-flex justify-content-center align-items-center">
+              <div class="circular-progress me-3">
+                <svg width="80" height="80" viewBox="0 0 120 120">
+                  <circle cx="60" cy="60" r="54" fill="none" stroke="#e6e6e6" stroke-width="12" />
+                  <circle cx="60" cy="60" r="54" fill="none" stroke="#28a745" stroke-width="12" 
+                    stroke-dasharray="339.292" stroke-dashoffset="<?php echo 339.292 * (1 - min(1, $optimasi[$index])); ?>" />
+                </svg>
+                <span class="position-absolute top-50 start-50 translate-middle text-success font-weight-bold">
+                  <?php echo number_format($optimasi[$index] * 100, 1); ?>%
+                </span>
+              </div>
+              <div class="score-details text-start">
+                <p class="mb-0 text-dark">Optimization Score</p>
+                <h5 class="text-danger font-weight-bold"><?php echo $hasil_optimasi; ?></h5>
+              </div>
+            </div>
+          </div>
+          
+          <p class="lead text-dark">Based on your profile and learning objectives, this course offers the optimal starting point for your educational journey.</p>
+          
+          <div class="mt-4">
+            <a href="#" class="btn btn-gradient-success btn-lg px-4 me-2">
+              <i class="fas fa-play-circle me-2"></i>Explore Course
+            </a>
+            <a href="#" class="btn btn-outline-primary btn-lg px-4">
+              <i class="fas fa-info-circle me-2"></i>Course Details
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="card-footer bg-white text-center text-muted">
+        <small><i class="fas fa-info-circle me-1"></i>Recommendation based on learning pattern analysis and career objective alignment</small>
       </div>
     </div>
   </div>

@@ -154,7 +154,65 @@ mysqli_close($db);
 	<link rel="stylesheet" type="text/css" href="css/util.css">
 	<link rel="stylesheet" type="text/css" href="css/main.css">
 	
-	
+	<style>
+.gradient-text {
+  background: linear-gradient(45deg, #2193b0, #6dd5ed);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  font-weight: bold;
+}
+
+.bg-gradient-primary {
+  background: linear-gradient(45deg, #4e54c8, #8f94fb);
+}
+
+.bg-gradient-success {
+  background: linear-gradient(45deg, #11998e, #38ef7d);
+}
+
+.btn-gradient-success {
+  background: linear-gradient(45deg, #11998e, #38ef7d);
+  border: none;
+  color: white;
+}
+
+.btn-gradient-success:hover {
+  background: linear-gradient(45deg, #0d8177, #32d871);
+  color: white;
+}
+
+.scores-container {
+  position: relative;
+  z-index: 1;
+}
+
+.scores-container::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(circle at top right, rgba(78, 84, 200, 0.1), transparent 70%);
+  z-index: -1;
+}
+
+.rounded-xl {
+  border-radius: 0.75rem;
+}
+
+.stat-card {
+  background-color: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+  transition: transform 0.3s ease;
+}
+
+.stat-card:hover {
+  transform: translateY(-5px);
+}
+</style>
 	
 </head>
 <body class="ttr-opened-sidebar ttr-pinned-sidebar">
@@ -239,24 +297,24 @@ mysqli_close($db);
 		                	<li>
 		                		<a href="courses.php" class="ttr-material-button"><span class="ttr-label">Degree</span></a>
 		                	</li>
-		                	<li>
+		                	<!-- <li>
 		                		<a href="diploma.html" class="ttr-material-button"><span class="ttr-label">Diploma</span></a>
 		                	</li>
 							<li>
 		                		<a href="certificate.html" class="ttr-material-button"><span class="ttr-label">Certificate</span></a>
-		                	</li>
+		                	</li> -->
 		                </ul>
 		            </li>
 
-					<li>
+					<!-- <li>
 						<a href="application.php" class="ttr-material-button">
 							<span class="ttr-icon"><i class="ti-home"></i></span>
 		                	<span class="ttr-label">Application/Revision</span>
 		                </a>
-		            </li>
+		            </li> -->
 
 
-					<li>
+					<!-- <li>
 						<a href="#" class="ttr-material-button">
 							<span class="ttr-icon"><i class="ti-email"></i></span>
 		                	<span class="ttr-label">Mailbox</span>
@@ -273,7 +331,7 @@ mysqli_close($db);
 		                		<a href="mailbox-read.html" class="ttr-material-button"><span class="ttr-label">Mail Read</span></a>
 		                	</li>
 		                </ul>
-		            </li>
+		            </li> -->
 
 					
 				</ul>
@@ -400,46 +458,171 @@ mysqli_close($db);
 			</div>
 			<!-- Card END -->
 			<div class="row">
-				<span class="login100-form-title">
-					Below are your subject scores<br>
-					
-				</span>
-				<!--form start here-->
-				
-				<form class="login100-form validate-form"  method="post" action="optimize.php">
-				<table border="2">	
-					<?php
+  <div class="col-lg-12">
+    <div class="scores-container p-4">
+      <h4 class="text-center mb-4 gradient-text">
+        <i class="fas fa-chart-bar me-2"></i>Your Academic Performance
+      </h4>
+      
+      <div class="card shadow-lg border-0 rounded-xl overflow-hidden mb-4">
+        <div class="card-header bg-gradient-primary text-white">
+          <div class="d-flex justify-content-between align-items-center">
+            <h5 class="mb-0 text-dark"><i class="fas fa-graduation-cap me-2"></i>Subject Performance Analysis</h5>
+            <span class="badge bg-light text-primary">Results Summary</span>
+          </div>
+        </div>
+        
+        <div class="card-body bg-light p-0">
+          <div class="table-responsive">
+            <table class="table table-hover mb-0">
+              <thead>
+                <tr class="bg-dark">
+                  <th class="px-4 py-3 text-white"><i class="fas fa-book me-2"></i>Subject</th>
+				  <th class="px-4 py-3 text-white text-end"><i class="fas fa-chart-pie me-2"></i>Percentage</th>
+                  <th class="px-4 py-3 text-white text-end"><i class="fas fa-star me-2"></i>Score</th>
+                </tr>
+              </thead>
+              <tbody>
+                <?php
+                  if (!empty($_POST)){
+                    $english = $_POST['english'];
+                    $kiswahili = $_POST['kiswahili'];
+                    $mathematics = $_POST['mathematics'];
+                    $biology = $_POST['biology'];
+                    $chemistry = $_POST['chemistry'];
+                    $physics = $_POST['physics'];
+                    $creire = $_POST['creire'];
+                    $geohis = $_POST['geohis'];
+                    $elective = $_POST['elective'];
+                  }
+                  
+                  $subjects = [
+                    ["English", $english],
+                    ["Kiswahili", $kiswahili],
+                    ["Mathematics", $mathematics],
+                    ["Biology", $biology],
+                    ["Chemistry", $chemistry],
+                    ["Physics", $physics],
+                    ["CRE/IRE", $creire],
+                    ["GEO/HIS", $geohis],
+                    ["Elective", $elective]
+                  ];
+                  
+                  foreach ($subjects as $subject) {
+                    $score = $subject[1];
+                    $scoreClass = "text-danger";
+                    
+					// Convert the score to a percentage (out of 12 points)
+// Convert the score to a percentage (out of 12 points)
+$scorePercentage = ($score / 12) * 100;
 
-						if (!empty($_POST)){
-							$english = $_POST['english'];
-							$kiswahili = $_POST['kiswahili'];
-							$mathematics = $_POST['mathematics'];
-							$biology = $_POST['biology'];
-							$chemistry = $_POST['chemistry'];
-							$physics = $_POST['physics'];
-							$creire = $_POST['creire'];
-							$geohis = $_POST['geohis'];
-							$elective = $_POST['elective'];
-						}
+// Assign Bootstrap classes based on a 12-point scale
+if ($score >= 10) {
+    $scoreClass = "text-success";  // Excellent
+    $progressColor = "bg-success"; // Green
+    $borderColor = "border-success";
+} elseif ($score >= 7) {
+    $scoreClass = "text-primary";  // Good
+    $progressColor = "bg-primary"; // Blue
+    $borderColor = "border-primary";
+} elseif ($score >= 4) {
+    $scoreClass = "text-warning";  // Needs Improvement
+    $progressColor = "bg-warning"; // Yellow
+    $borderColor = "border-warning";
+} else {
+    $scoreClass = "text-danger";   // Poor
+    $progressColor = "bg-danger";  // Red
+    $borderColor = "border-danger";
+}
 
-						
-						echo "<tr>"."<th><em>Subject Name</em></th>". "<th><em><b>Subject Score</b></em></th>" ."</tr>";
-						echo "<tr>"."<th><em>English</em></th>". "<th>$english</th>" ."</tr>";
-						echo "<tr>"."<th><em>Kiswahili</em></th>". "<th>$kiswahili</th>" ."</tr>"; 
-						echo "<tr>"."<th><em>Mathematics</em></th>". "<th>$mathematics</th>" ."</tr>";
-						echo "<tr>"."<th><em>Biology</em></th>". "<th>$biology</th>" ."</tr>";
-						echo "<tr>"."<th><em>Chemistry</em></th>". "<th>$chemistry</th>" ."</tr>";
-						echo "<tr>"."<th><em>Physics</em></th>". "<th>$physics</th>" ."</tr>";
-						echo "<tr>"."<th><em>CRE/IRE</em></th>". "<th>$creire</th>" ."</tr>";
-						echo "<tr>"."<th><em>GEO/HIS</em></th>". "<th>$geohis</th>" ."</tr>";
-						echo "<tr>"."<th><em>Elective</em></th>". "<th>$elective</th>" ."</tr>";
+// Display the decorated table row
+echo '<tr class="border-bottom">
+        <!-- Column 1: Subject -->
+        <td class="px-4 py-3 fw-bold">' . $subject[0] . '</td>
+        
+        <!-- Column 2: Progress Bar -->
+        <td class="px-4 py-3">
+          <div class="progress ' . $borderColor . ' shadow-sm" 
+            style="height: 12px; width: 100%; border: 2px solid;">
+            <div class="progress-bar ' . $progressColor . '" role="progressbar" 
+              style="width: ' . $scorePercentage . '%;"></div>
+          </div>
+        </td>
 
+        <!-- Column 3: Score Display -->
+        <td class="px-4 py-3 fw-bold ' . $scoreClass . ' text-center">' . $score . ' / 12</td>
+      </tr>';
 
-					?>	
-				</table>
-				</form>
-				<?php include_once 'optimize.php';?>
-			</div>
+                  }
+                ?>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        
+        <div class="card-footer bg-white d-flex justify-content-between align-items-center py-3">
+          <span class="text-muted"><i class="fas fa-info-circle me-1"></i>These scores will be used for your course recommendations</span>
+          <form method="post" action="optimize.php" class="m-0">
+            <input type="hidden" name="process_scores" value="1">
+            <?php
+              foreach ($subjects as $subject) {
+                echo '<input type="hidden" name="' . strtolower($subject[0]) . '" value="' . $subject[1] . '">';
+              }
+            ?>
+            <button type="submit" class="btn btn-gradient-success">
+              <i class="fas fa-magic me-2"></i>Generate Recommendations
+            </button>
+          </form>
+        </div>
+      </div>
+      
+      <div class="text-center mt-4">
+        <div class="performance-summary p-3 bg-light rounded-lg">
+          <div class="row">
+            <div class="col-md-4">
+              <div class="stat-card p-3">
+                <h6 class="text-primary mb-1">Average Score</h6>
+                <h3 class="mb-0">
+                  <?php 
+                    $scores = array_column($subjects, 1);
+                    echo round(array_sum($scores) / count($scores), 1);
+                  ?>
+                </h3>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="stat-card p-3">
+                <h6 class="text-success mb-1">Top Subject</h6>
+                <h3 class="mb-0">
+                  <?php 
+                    $max_score = max($scores);
+                    $max_index = array_search($max_score, $scores);
+                    echo $subjects[$max_index][0];
+                  ?>
+                </h3>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="stat-card p-3">
+                <h6 class="text-info mb-1">Growth Area</h6>
+                <h3 class="mb-0">
+                  <?php 
+                    $min_score = min($scores);
+                    $min_index = array_search($min_score, $scores);
+                    echo $subjects[$min_index][0];
+                  ?>
+                </h3>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+</div>
+
+<?php include_once 'optimize.php';?>
 		</div>		
 	</main>
 	<div class="ttr-overlay"></div>
