@@ -57,17 +57,8 @@ foreach ($alternatif as $id_ikm => $a) {
     }
 }
 
-// Sorting and Ranking
-arsort($optimasi); // Sorts the $optimasi array in descending order by value
 
-// // Displaying Ranked Results
-// $rank = 1;
-// foreach ($optimasi as $id_ikm => $score) {
-//     echo "Rank $rank: Course ID $id_ikm - Score: $score\n";
-//     echo "Course Name: " . $alternatif[$id_ikm][0] . ", Institution: " . $alternatif[$id_ikm][2] . "\n";
-//     $rank++;
-// }
-// ?>
+?>
 
 
 <br />
@@ -80,7 +71,7 @@ arsort($optimasi); // Sorts the $optimasi array in descending order by value
         <h5 class="mt-2 font-weight-bold">
           <i class="fas fa-chart-line me-2"></i>Course Optimization Analysis
         </h5>
-        <span class="badge bg-light text-primary">AI-Powered</span>
+        <span class="badge bg-light text-primary">MOORA-Powered</span>
       </div>
       <div class="card-body bg-light">
             <div class="table-responsive">
@@ -126,7 +117,12 @@ arsort($optimasi); // Sorts the $optimasi array in descending order by value
           ?>
           <tr class="border-bottom border-light">
             <!-- Optimized Course -->
-            <td class="font-weight-bold text-primary"> <?php echo $alternatif[$key][0]; ?> </td>
+            <td class="font-weight-bold text-primary">
+    <a href="application.php?id_alternative=<?php echo $key; ?>" class="text-decoration-none text-primary">
+        <?php echo $alternatif[$key][0]; ?>
+    </a>
+</td>
+
 
             <!-- Visual Progress Bar -->
             <td>
@@ -221,14 +217,12 @@ arsort($optimasi); // Sorts the $optimasi array in descending order by value
 
           <p class="lead text-dark">Based on your profile and learning objectives, this course offers the optimal starting point for your educational journey.</p>
           
-          <div class="mt-4">
-            <a href="#" class="btn btn-gradient-success btn-lg px-4 me-2">
-              <i class="fa fa-play-circle me-2"></i>Explore Course
-            </a>
-            <a href="#" class="btn btn-outline-primary btn-lg px-4">
-              <i class="fa fa-info-circle me-2"></i>Course Details
-            </a>
-          </div>
+          <!-- <div class="mt-4 text-center">
+              <a href="opcourse.php?id_alternative=<?= $id_alternative; ?>" class="btn btn-gradient-success btn-lg px-5">
+                  <i class="fa fa-play-circle me-2"></i> Explore Course Details
+              </a>
+          </div> -->
+
         </div>
       </div>
       <div class="card-footer bg-white text-center text-muted">

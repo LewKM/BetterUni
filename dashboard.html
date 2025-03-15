@@ -128,24 +128,24 @@
 
 					<li>
 						<a href="#" class="ttr-material-button">
-							<span class="ttr-icon"><i class="ti-email"></i></span>
-		                	<span class="ttr-label">Mailbox</span>
+							<span class="ttr-icon"><i class="ti-book"></i></span>
+		                	<span class="ttr-label">Programmes</span>
 		                	<span class="ttr-arrow-icon"><i class="fa fa-angle-down"></i></span>
 		                </a>
 		                <ul>
 		                	<li>
-		                		<a href="mailbox.html" class="ttr-material-button"><span class="ttr-label">Mail Box</span></a>
+		                		<a href="courses.php" class="ttr-material-button"><span class="ttr-label">Degree</span></a>
 		                	</li>
-		                	<li>
-		                		<a href="mailbox-compose.html" class="ttr-material-button"><span class="ttr-label">Compose</span></a>
+		                	<!-- <li>
+		                		<a href="diploma.html" class="ttr-material-button"><span class="ttr-label">Diploma</span></a>
 		                	</li>
 							<li>
-		                		<a href="mailbox-read.html" class="ttr-material-button"><span class="ttr-label">Mail Read</span></a>
-		                	</li>
+		                		<a href="certificate.html" class="ttr-material-button"><span class="ttr-label">Certificate</span></a>
+		                	</li> -->
 		                </ul>
 		            </li>
 				</ul>
-				<ul>
+				<ul class="mt-4">
 					<center>
 					<iframe width="200px" height="60px" scrolling="no" src="clock.html"></iframe>
 					</center>	
@@ -272,77 +272,92 @@
 				</div>
 			</div>
 			<!-- Card END -->
-			<div class="row">
-				<span class="login100-form-title">
-					Give us some data. What did you score in these subjects?<br>
-						<br>
-					<pre></pre> 
-					Fill in numeric form. Kindly refer to the list below.<br>
-					<em>
+			<div class="container my-5">
+				<div class="card shadow-lg border-0 rounded-4 futuristic-card">
+				  <div class="glow-border"></div>
+				  <div class="card-body p-4">
+					<h3 class="text-center fw-bold text-gradient mb-4">Academic Data Portal</h3>
+					<p class="text-center text-muted mb-2">
+					  What did you score in these subjects? Fill in numeric form. Refer to the grading system below.
+					</p>
+					<div class="grade-reference mb-4">
+					  <p class="text-center fst-italic">
 						(A)=12, (A-)=11, (B+)=10, (B)=9, (B-)=8, (C+)=7, (C)=6, (C-)=5, (D+)=4, (D)=3, (D-)=2, (E)=1
-					</em>
-				</span>
-				<!--form start here-->
-				
-				<form class="login100-form validate-form" action="application.php" method="post">
-					
-					<div class="wrap-input100 validate-input" data-validate = "What was your English Grade?">
-						<input class="input100"  type="number"  name="english" id="english" placeholder="English" min="1" max="12">
-						<span class="focus-input100"></span>
-						
+					  </p>
 					</div>
-					<div class="wrap-input100 validate-input" data-validate = "What was your Kiswahili Grade?">
-						<input class="input100" type="number" name="kiswahili" id="kiswahili" placeholder="Kiswahili" min="1" max="12">
-						<span class="focus-input100"></span>
-						
+					<form action="application.php" method="post">
+					  <div class="row g-3">
+						<div class="col-md-6 mt-3">
+						  <div class="input-group">
+							<!-- <span class="input-group-text bg-transparent border-end-0"><i class="fa fa-book text-primary"></i></span> -->
+							<input type="number" class="form-control form-control-lg rounded-pill py-2 ps-0 border-start-0" name="english" placeholder="English" min="1" max="12">
+						  </div>
+						</div>
+						<div class="col-md-6 mt-3">
+						  <div class="input-group">
+							<!-- <span class="input-group-text bg-transparent border-end-0"><i class="fa fa-language text-primary"></i></span> -->
+							<input type="number" class="form-control form-control-lg rounded-pill py-2 ps-0 border-start-0" name="kiswahili" placeholder="Kiswahili" min="1" max="12">
+						  </div>
+						</div>
+						<div class="col-md-6 mt-3">
+						  <div class="input-group">
+							<!-- <span class="input-group-text bg-transparent border-end-0"><i class="fa fa-calculator text-primary"></i></span> -->
+							<input type="number" class="form-control form-control-lg rounded-pill py-2 ps-0 border-start-0" name="mathematics" placeholder="Mathematics" min="1" max="12">
+						  </div>
+						</div>
+						<div class="col-md-6 mt-3">
+						  <div class="input-group">
+							<!-- <span class="input-group-text bg-transparent border-end-0"><i class="fa fa	 text-primary"></i></span> -->
+							<input type="number" class="form-control form-control-lg rounded-pill py-2 ps-0 border-start-0" name="biology" placeholder="Biology" min="1" max="12">
+						  </div>
+						</div>
+						<div class="col-md-6 mt-3">
+						  <div class="input-group">
+							<!-- <span class="input-group-text bg-transparent border-end-0"><i class="fa fa-atom text-primary"></i></span> -->
+							<input type="number" class="form-control form-control-lg rounded-pill py-2 ps-0 border-start-0" name="physics" placeholder="Physics" min="1" max="12">
+						  </div>
+						</div>
+						<div class="col-md-6 mt-3">
+						  <div class="input-group">
+							<!-- <span class="input-group-text bg-transparent border-end-0"><i class="fa fa-flask text-primary"></i></span> -->
+							<input type="number" class="form-control form-control-lg rounded-pill py-2 ps-0 border-start-0" name="chemistry" placeholder="Chemistry" min="1" max="12">
+						  </div>
+						</div>
+						<div class="col-md-6 mt-3">
+						  <div class="input-group">
+							<!-- <span class="input-group-text bg-transparent border-end-0"><i class="fa fa-pray text-primary"></i></span> -->
+							<input type="number" class="form-control form-control-lg rounded-pill py-2 ps-0 border-start-0" name="creire" placeholder="CRE/IRE" min="1" max="12">
+						  </div>
+						</div>
+						<div class="col-md-6 mt-3">
+						  <div class="input-group">
+							<!-- <span class="input-group-text bg-transparent border-end-0"><i class="fa fa-globe-americas text-primary"></i></span> -->
+							<input type="number" class="form-control form-control-lg rounded-pill py-2 ps-0 border-start-0" name="geohis" placeholder="Geography/History" min="1" max="12">
+						  </div>
+						</div>
+						<div class="col-md-6 mx-auto mt-3">
+						  <div class="input-group">
+							<!-- <span class="input-group-text bg-transparent border-end-0"><i class="fa fa-star text-primary"></i></span> -->
+							<input type="number" class="form-control form-control-lg rounded-pill py-2 ps-0 border-start-0" name="elective" placeholder="Elective" min="1" max="12">
+						  </div>
+						</div>
+						<div class="col-12 text-center mt-4">
+						  <button type="submit" class="btn btn-gradient-primary w-50 py-3 rounded-pill fw-bold text-white submit-btn">
+							<span class="button-text">Submit Data</span>
+							<i class="fas fa-arrow-right ms-2"></i>
+						  </button>
+						</div>
+					  </div>
+					</form>
+					<div class="progress mt-4 rounded-pill" style="height: 8px;">
+					  <div class="progress-bar progress-bar-striped progress-bar-animated bg-gradient-primary" role="progressbar" style="width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
 					</div>
-					
-					<div class="wrap-input100 validate-input" data-validate = "What was your Mathematics Grade?">
-						<input class="input100" type="number" name="mathematics" id="mathematics" placeholder="Mathematics" min="1" max="12">
-						<span class="focus-input100"></span>
-						
-					</div>
-
-					<div class="wrap-input100 validate-input" data-validate = "What was your Biology Grade?">
-						<input class="input100" type="number" name="biology" id="biology" placeholder="Biology" min="1" max="12">
-						<span class="focus-input100"></span>
-						
-					</div>
-					
-					<div class="wrap-input100 validate-input" data-validate = "What was your Physics Grade?">
-						<input class="input100" type="number" name="physics" id="physics" placeholder="Physics" min="1" max="12">
-						<span class="focus-input100"></span>
-						
-					</div>
-					
-					<div class="wrap-input100 validate-input" data-validate = "What was your Chemistry Grade?">
-						<input class="input100" type="number" name="chemistry" id="chemistry" placeholder="Chemistry" min="1" max="12">
-						<span class="focus-input100"></span>
-						
-					</div>
-
-					<div class="wrap-input100 validate-input" data-validate = "What was your CRE Grade?">
-						<input class="input100" type="number" name="creire" id="creire" placeholder="CRE/IRE" min="1" max="12">
-						<span class="focus-input100"></span>
-						
-					</div>
-					
-					<div class="wrap-input100 validate-input" data-validate = "What was your Geography/History Grade?">
-						<input class="input100" type="number" name="geohis" id="geohis" placeholder="Geography/History" min="1" max="12">
-						<span class="focus-input100"></span>
-						
-					</div>
-					
-					<div class="wrap-input100 validate-input" data-validate = "What Elective subject did you do?">
-						<input class="input100" type="number" name="elective" id="elective" placeholder="Elective" min="1" max="12">
-						<span class="focus-input100"></span>
-					</div>
-
-					<div class="container-login100-form-btn">
-						<input class="login100-form-btn" type="submit" name="submit" value="SUMBIT"><br>
-					</div>
-				</form>
-			</div>
+					<p class="text-center text-muted small mt-3">Complete all fields for accurate analysis</p>
+				  </div>
+				</div>
+			  </div>
+			  
+			  
 		</div>		
 	</main>
 	<div class="ttr-overlay"></div>
@@ -367,6 +382,28 @@
 	<script src='assets/vendors/calendar/moment.min.js'></script>
 	<script src='assets/vendors/calendar/fullcalendar.js'></script>
 	<script src='assets/vendors/switcher/switcher.js'></script>
+	<script>
+		// Progress calculation as fields are filled
+		document.addEventListener('DOMContentLoaded', function() {
+		  const inputs = document.querySelectorAll('input[type="number"]');
+		  const progressBar = document.querySelector('.progress-bar');
+		  
+		  function updateProgress() {
+			let filled = 0;
+			inputs.forEach(input => {
+			  if (input.value) filled++;
+			});
+			
+			const percentage = Math.round((filled / inputs.length) * 100);
+			progressBar.style.width = percentage + '%';
+			progressBar.setAttribute('aria-valuenow', percentage);
+		  }
+		  
+		  inputs.forEach(input => {
+			input.addEventListener('input', updateProgress);
+		  });
+		});
+	  </script>
 	<script>
 		$(document).ready(function() {
 

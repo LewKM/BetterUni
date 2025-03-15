@@ -367,6 +367,188 @@ iframe {
   overflow: hidden; /* Ensures the border-radius applies properly */
 }
 
+				@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap');
+			  
+				body {
+				  font-family: 'Outfit', sans-serif;
+				  background-color: #f8f9fa;
+				  background-image: radial-gradient(circle at 10% 20%, rgba(91, 104, 235, 0.1) 0%, rgba(0, 162, 255, 0.1) 90%);
+				}
+				
+				.futuristic-card {
+				  position: relative;
+				  background: rgba(255, 255, 255, 0.95);
+				  backdrop-filter: blur(10px);
+				  box-shadow: 0 15px 35px rgba(0, 32, 128, 0.1), 0 5px 15px rgba(0, 0, 0, 0.07);
+				  overflow: hidden;
+				  transition: all 0.3s ease;
+				}
+				
+				.futuristic-card:hover {
+				  transform: translateY(-5px);
+				  box-shadow: 0 20px 40px rgba(0, 32, 128, 0.15), 0 10px 20px rgba(0, 0, 0, 0.1);
+				}
+				
+				.glow-border {
+				  position: absolute;
+				  top: 0;
+				  left: 0;
+				  right: 0;
+				  height: 3px;
+				  background: linear-gradient(90deg, #007bff, #6610f2, #6f42c1, #007bff);
+				  background-size: 300% 100%;
+				  animation: gradient-animation 4s ease infinite;
+				}
+				
+				@keyframes gradient-animation {
+				  0% { background-position: 0% 50%; }
+				  50% { background-position: 100% 50%; }
+				  100% { background-position: 0% 50%; }
+				}
+				
+				.text-gradient {
+				  background: linear-gradient(135deg, #007bff, #6610f2);
+				  -webkit-background-clip: text;
+				  background-clip: text;
+				  color: transparent;
+				  font-size: 2.5rem;
+				  letter-spacing: -0.5px;
+				  font-weight: 700;
+				}
+				
+				.grade-reference {
+				  background-color: rgba(99, 102, 241, 0.08);
+				  border-radius: 12px;
+				  padding: 8px;
+				  max-width: 80%;
+				  margin: 0 auto;
+				  font-weight: 500;
+				}
+				
+				.input-group {
+				  border-radius: 30px;
+				  overflow: hidden;
+				  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+				  transition: all 0.3s ease;
+				}
+				
+				.input-group:focus-within {
+				  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.25);
+				}
+				
+				.input-group-text {
+				  border-radius: 30px 0 0 30px;
+				  transition: all 0.3s ease;
+				}
+				
+				.form-control {
+				  border-radius: 0 30px 30px 0 !important;
+				  font-size: 1rem;
+				  transition: all 0.3s ease;
+				  border-left: none;
+				}
+				
+				.form-control::placeholder {
+				  color: #a0aec0;
+				  font-weight: 300;
+				}
+				
+				.form-control:focus {
+				  box-shadow: none;
+				  border-color: #ced4da;
+				}
+				
+				.btn-gradient-primary {
+				  background: linear-gradient(135deg, #007bff, #6610f2);
+				  border: none;
+				  box-shadow: 0 10px 20px rgba(99, 102, 241, 0.3);
+				  position: relative;
+				  overflow: hidden;
+				  transition: all 0.5s ease;
+				}
+				
+				.btn-gradient-primary:hover {
+				  background: linear-gradient(135deg, #0056b3, #520dc2);
+				  transform: translateY(-2px);
+				  box-shadow: 0 15px 25px rgba(99, 102, 241, 0.4);
+				}
+				
+				.btn-gradient-primary::before {
+				  content: '';
+				  position: absolute;
+				  top: 0;
+				  left: 0;
+				  width: 100%;
+				  height: 100%;
+				  background: linear-gradient(90deg, rgba(255,255,255,0), rgba(255,255,255,0.2), rgba(255,255,255,0));
+				  transform: translateX(-100%);
+				}
+				
+				.btn-gradient-primary:hover::before {
+				  animation: shine 1.5s infinite;
+				}
+				
+				@keyframes shine {
+				  100% {
+					transform: translateX(100%);
+				  }
+				}
+				
+				.submit-btn {
+				  letter-spacing: 0.5px;
+				  font-size: 1.1rem;
+				  transition: all 0.3s ease;
+				}
+				
+				.submit-btn:hover .button-text {
+				  transform: translateX(-5px);
+				}
+				
+				.submit-btn:hover .fas {
+				  transform: translateX(5px);
+				}
+				
+				.submit-btn .button-text,
+				.submit-btn .fas {
+				  display: inline-block;
+				  transition: transform 0.3s ease;
+				}
+				
+				.bg-gradient-primary {
+				  background: linear-gradient(90deg, #007bff, #6610f2, #6f42c1, #007bff);
+				  background-size: 300% 100%;
+				  animation: progress-animation 2s linear infinite;
+				}
+				
+				@keyframes progress-animation {
+				  0% { background-position: 0% 50%; }
+				  50% { background-position: 100% 50%; }
+				  100% { background-position: 0% 50%; }
+				}
+			  
+				/* Form field auto-completion for better visualization */
+				.form-control-lg:valid {
+				  background-color: rgba(72, 187, 120, 0.05);
+				  border-color: #48bb78;
+				}
+				
+				/* Make sure inputs work well on mobile */
+				@media (max-width: 768px) {
+				  .text-gradient {
+					font-size: 2rem;
+				  }
+				  
+				  .submit-btn {
+					width: 80% !important;
+				  }
+				  
+				  .grade-reference {
+					max-width: 100%;
+				  }
+				}
+			
+
+
 
 /*------------------------------------------------------------------
 [ Responsive ]*/

@@ -99,6 +99,14 @@ if (mysqli_query($db, $sql9)) {
   } else {
 }
 
+// Retrieve id_alternative from URL
+if (isset($_GET['id_alternative'])) {
+    $id_alternative = intval($_GET['id_alternative']);
+    $_SESSION['id_alternative'] = $id_alternative; // Store it in session (optional)
+} else {
+    $id_alternative = null; // Default value if not set
+}
+
 mysqli_close($db);
 
 ?>
