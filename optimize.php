@@ -82,7 +82,7 @@ foreach ($alternatif as $id_ikm => $a) {
                       <i class="fa fa-graduation-cap me-2"></i> Optimized Courses
                     </th>
                     <th class="text-white">
-                      <i class="fa fa-chart-bar me-2"></i> Visual Progress
+                      <i class="fa fa-chart-bar me-2"></i> Optimization Percentage
                     </th>
                     <th class=" text-start rounded-end text-white text-center">
                       <i class="fa fa-calculator me-2"></i> Optimization Score
@@ -132,7 +132,7 @@ foreach ($alternatif as $id_ikm => $a) {
                           style="width: <?php echo min(100, $progressPercentage); ?>%; transition: width 0.6s ease-in-out; "
                           aria-valuenow="<?php echo $scoreOutOf10; ?>" 
                           aria-valuemin="0" 
-                          aria-valuemax="10">
+                          aria-valuemax="12">
                         </div>
                       </div>
                     </td>
@@ -171,7 +171,7 @@ foreach ($alternatif as $id_ikm => $a) {
         ?>
         <div class="recommendation-container p-4">
           <div class="recommendation-badge mb-3">
-            <span class="badge bg-primary text-white p-2"><i class="fas fa-robot me-1"></i>AI Recommendation</span>
+            <span class="badge bg-primary text-white p-2"><i class="fas fa-robot me-1"></i>MOORA Recommendation</span>
           </div>
           
           <h4 class="text-primary font-weight-bold">
