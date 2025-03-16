@@ -462,7 +462,7 @@
           $records = mysqli_query($db, "SELECT * FROM courses");
           while ($data = mysqli_fetch_array($records)) {
             // Determine if course is eligible based on cutoff points
-            $eligibilityClass = "bg-white bg-opacity-10 text-danger";
+            $eligibilityClass = "bg-white bg-opacity-10 text-success";
             $eligibilityText = "High Requirements";
             
             if ($data['cutoffpoints'] <= $averageCutoff) {
@@ -487,7 +487,7 @@
         </tbody>
       </table>
     </div>
-    <div class="card-footer bg-white p-3 border-0 d-flex justify-content-between align-items-center">
+    <!-- <div class="card-footer bg-white p-3 border-0 d-flex justify-content-between align-items-center">
       <div>
         <small class="text-muted">Showing <span class="fw-bold">1-10</span> of <span class="fw-bold"><?php echo $courseCount; ?></span> courses</small>
       </div>
@@ -500,7 +500,7 @@
           <li class="page-item"><a class="page-link" href="#">Next</a></li>
         </ul>
       </nav>
-    </div>
+    </div> -->
   </div>
 </div>
 
