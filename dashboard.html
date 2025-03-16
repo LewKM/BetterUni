@@ -69,7 +69,7 @@
 				<!-- header left menu start -->
 				<ul class="ttr-header-navigation">
 					<li>
-						<a href="dashboard.html" class="ttr-material-button ttr-submenu-toggle">HOME</a>
+						<a href="dashboard.html" class="ttr-material-button ttr-submenu-toggle">BetterUni</a>
 					</li>
 				</ul>
 				<!-- header left menu end -->

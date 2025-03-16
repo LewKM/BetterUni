@@ -90,67 +90,65 @@ foreach ($alternatif as $id_ikm => $a) {
                   </tr>
                 </thead>
                 <tbody>
-          <?php 
-            foreach ($optimasi as $key => $value): 
-              // Convert score to percentage (out of 10)
-              $scoreOutOf10 = $value;
-              $progressPercentage = ($scoreOutOf10 / 10) * 100;
+                  <?php 
+                    foreach ($optimasi as $key => $value): 
+                      // Convert score to percentage (out of 10)
+                      $scoreOutOf10 = $value;
+                      $progressPercentage = ($scoreOutOf10 / 12) * 100;
 
-              // Color coding based on score
-              if ($scoreOutOf10 >= 7) {
-                $progressClass = "bg-success"; // High performance
-                $textClass = "text-success";
-                $borderColor = "#border-success"; // Green border
-              } elseif ($scoreOutOf10 >= 5) {
-                $progressClass = "bg-primary"; // Moderate performance
-                $textClass = "text-primary";
-                $borderColor = "border-primary"; // Blue border
-              } elseif ($scoreOutOf10 >= 3) {
-                $progressClass = "bg-warning"; // Low performance
-                $textClass = "text-warning";
-                $borderColor = "#border-warning"; // Yellow border
-              } else {
-                $progressClass = "bg-danger"; // Poor performance
-                $textClass = "text-danger";
-                $borderColor = "border-danger"; // Red border
-              }
-          ?>
-          <tr class="border-bottom border-light">
-            <!-- Optimized Course -->
-            <td class="font-weight-bold text-primary">
-    <a href="application.php?id_alternative=<?php echo $key; ?>" class="text-decoration-none text-primary">
-        <?php echo $alternatif[$key][0]; ?>
-    </a>
-</td>
+                      // Color coding based on score
+                      if ($scoreOutOf10 >= 9) {
+                        $progressClass = "bg-success"; // High performance
+                        $textClass = "text-success";
+                        $borderColor = "#border-success"; // Green border
+                      } elseif ($scoreOutOf10 >= 5) {
+                        $progressClass = "bg-primary"; // Moderate performance
+                        $textClass = "text-primary";
+                        $borderColor = "border-primary"; // Blue border
+                      } elseif ($scoreOutOf10 >= 3) {
+                        $progressClass = "bg-warning"; // Low performance
+                        $textClass = "text-warning";
+                        $borderColor = "#border-warning"; // Yellow border
+                      } else {
+                        $progressClass = "bg-danger"; // Poor performance
+                        $textClass = "text-danger";
+                        $borderColor = "border-danger"; // Red border
+                      }
+                  ?>
+                  <tr class="border-bottom border-light">
+                    <!-- Optimized Course -->
+                    <td class="font-weight-bold text-primary">
+                        <a href="application.php?id_alternative=<?php echo $key; ?>" class="text-decoration-none text-primary">
+                            <?php echo $alternatif[$key][0]; ?>
+                        </a>
+                    </td>
 
+                    <!-- Visual Progress Bar -->
+                    <td>
+                      <div class="progress shadow-sm position-relative  " 
+                        style="height: 12px; border: 2px solid <?php echo $borderColor; ?>;">
+                        <div class="progress-bar <?php echo $progressClass; ?>" 
+                          role="progressbar"
+                          style="width: <?php echo min(100, $progressPercentage); ?>%; transition: width 0.6s ease-in-out; "
+                          aria-valuenow="<?php echo $scoreOutOf10; ?>" 
+                          aria-valuemin="0" 
+                          aria-valuemax="10">
+                        </div>
+                      </div>
+                    </td>
 
-            <!-- Visual Progress Bar -->
-            <td>
-              <div class="progress shadow-sm position-relative  " 
-                style="height: 12px; border: 2px solid <?php echo $borderColor; ?>;">
-                <div class="progress-bar <?php echo $progressClass; ?>" 
-                  role="progressbar"
-                  style="width: <?php echo min(100, $progressPercentage); ?>%; transition: width 0.6s ease-in-out; "
-                  aria-valuenow="<?php echo $scoreOutOf10; ?>" 
-                  aria-valuemin="0" 
-                  aria-valuemax="10">
-                </div>
-              </div>
-            </td>
-
-            <!-- Score Display -->
-            <td class="text-center">
-              <span class="font-weight-bold <?php echo $textClass; ?>">
-                <?php echo number_format($scoreOutOf10, 2); ?>
-              </span>
-            </td>
-          </tr>
-          <?php endforeach; ?>
-        </tbody>
-    </table>
-  </div>
-</div>
-
+                    <!-- Score Display -->
+                    <td class="text-center">
+                      <span class="font-weight-bold <?php echo $textClass; ?>">
+                        <?php echo number_format($scoreOutOf10, 2); ?>
+                      </span>
+                    </td>
+                  </tr>
+                  <?php endforeach; ?>
+                </tbody>
+            </table>
+          </div>
+        </div>
     </div>
   </div>
 </div>
@@ -182,8 +180,8 @@ foreach ($alternatif as $id_ikm => $a) {
           </h4>
           
           <?php 
-          // Convert the score out of 10 to a percentage
-          $scorePercentage = min(100, ($optimasi[$index] / 10) * 100);
+          // Convert the score out of 12 to a percentage
+          $scorePercentage = min(100, ($optimasi[$index] / 12) * 100);
 
           // Adjust the stroke-dashoffset for circular progress (360 is the full circle)
           $strokeOffset = 360 * (1 - ($scorePercentage / 100));
@@ -200,7 +198,7 @@ foreach ($alternatif as $id_ikm => $a) {
                     
                     <!-- Progress Circle -->
                     <circle cx="60" cy="60" r="54" fill="none" stroke="#28a745" stroke-width="12"
-                      stroke-dasharray="339.292" 
+                      stroke-dasharray="360" 
                       stroke-dashoffset="<?php echo $strokeOffset; ?>" 
                       stroke-linecap="round"
                       style="transition: stroke-dashoffset 0.6s ease-in-out;" />
@@ -210,7 +208,7 @@ foreach ($alternatif as $id_ikm => $a) {
               <!-- Column for Score Details -->
               <div class="col-md-8 col-sm-12 text-md-start text-center mt-3 mt-md-0">
                 <p class="mb-1 text-muted fw-semibold">Optimization Score</p>
-                <h5 class="text-danger fw-bold"><?php echo number_format($optimasi[$index], 2); ?> / 10</h5>
+                <h5 class="text-danger fw-bold"><?php echo number_format($optimasi[$index], 2); ?> / 12</h5>
               </div>
             </div>
           </div>

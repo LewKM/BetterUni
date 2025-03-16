@@ -475,7 +475,7 @@ mysqli_close($db);
 					<div class="card shadow-lg border-0 rounded-xl overflow-hidden mb-4">
 						<div class="card-header bg-gradient-primary text-white">
 						<div class="d-flex justify-content-between align-items-center">
-							<h5 class="mb-0 text-dark"><i class="fas fa-graduation-cap me-2"></i>Subject Performance Analysis</h5>
+							<h5 class="mb-0 text-white"><i class="fas fa-graduation-cap me-2"></i>Subject Performance Analysis</h5>
 							<span class="badge bg-light text-primary">Results Summary</span>
 						</div>
 						</div>
@@ -487,7 +487,7 @@ mysqli_close($db);
 								<tr class="bg-dark">
 								<th class="px-4 py-3 text-white"><i class="fas fa-book me-2"></i>Subject</th>
 								<th class="px-4 py-3 text-white text-end"><i class="fas fa-chart-pie me-2"></i>Percentage</th>
-								<th class="px-4 py-3 text-white text-end"><i class="fas fa-star me-2"></i>Score</th>
+								<th class="px-4 py-3 text-white text-center"><i class="fas fa-star me-2"></i>Score</th>
 								</tr>
 							</thead>
 							<tbody>
@@ -568,7 +568,7 @@ mysqli_close($db);
 			</div>
 			</div>
 			
-			<div class="card-footer bg-white d-flex justify-content-between align-items-center py-3">
+			<!-- <div class="card-footer bg-white d-flex justify-content-between align-items-center py-3">
 			<span class="text-muted"><i class="fas fa-info-circle me-1"></i>These scores will be used for your course recommendations</span>
 			<form method="post" action="optimize.php" class="m-0">
 				<input type="hidden" name="process_scores" value="1">
@@ -581,7 +581,7 @@ mysqli_close($db);
 				<i class="fas fa-magic me-2"></i>Generate Recommendations
 				</button>
 			</form>
-			</div>
+			</div> -->
 		</div>
 		
 		<div class="text-center mt-4">
